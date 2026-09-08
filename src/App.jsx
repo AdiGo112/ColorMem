@@ -104,7 +104,7 @@ function App() {
     hsl(${guess.h}, ${guess.s}%, 50%),
     hsl(${guess.h}, ${guess.s}%, 100%))`;
 
-  const getSliderPercent = (value, max) => (value / max) * 100;
+  const getSliderRatio = (value, max) => value / max;
 
   // ─── Round Dots ──────────────────────────────────────────────────────────
   const renderRoundDots = () => (
@@ -191,13 +191,14 @@ function App() {
                   <div className="slider-gradient" style={{ background: hueGradient }} />
                   <div
                     className="slider-thumb-visual"
-                    style={{ left: `${getSliderPercent(guess.h, 359)}%` }}
+                    style={{ '--slider-ratio': getSliderRatio(guess.h, 360) }}
                   />
                   <input
                     id="slider-hue"
                     type="range"
                     min="0"
-                    max="359"
+                    max="360"
+                    step="1"
                     value={guess.h}
                     onChange={e => setGuess(g => ({ ...g, h: parseInt(e.target.value) }))}
                   />
@@ -214,7 +215,7 @@ function App() {
                   <div className="slider-gradient" style={{ background: satGradient }} />
                   <div
                     className="slider-thumb-visual"
-                    style={{ left: `${getSliderPercent(guess.s, 100)}%` }}
+                    style={{ '--slider-ratio': getSliderRatio(guess.s, 100) }}
                   />
                   <input
                     id="slider-saturation"
@@ -237,7 +238,7 @@ function App() {
                   <div className="slider-gradient" style={{ background: lightGradient }} />
                   <div
                     className="slider-thumb-visual"
-                    style={{ left: `${getSliderPercent(guess.l, 100)}%` }}
+                    style={{ '--slider-ratio': getSliderRatio(guess.l, 100) }}
                   />
                   <input
                     id="slider-lightness"

@@ -442,6 +442,7 @@ body {
   padding: 0;
 }
 
+
 .slider-track input[type="range"]::-webkit-slider-runnable-track {
   height: 12px;
   border-radius: 6px;
@@ -460,10 +461,13 @@ body {
 }
 
 .slider-thumb-visual {
+  --slider-thumb-size: 22px;
+  --slider-ratio: 0.5;
   position: absolute;
   top: 50%;
-  width: 22px;
-  height: 22px;
+  left: calc((100% - var(--slider-thumb-size)) * var(--slider-ratio) + (var(--slider-thumb-size) / 2));
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
   border-radius: 50%;
   background: #fff;
   border: 2px solid rgba(0, 0, 0, 0.15);
